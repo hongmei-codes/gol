@@ -63,7 +63,7 @@ def checkNeighbours(array,row,col):
         newRow = row + m
         for n in range(-1,2):
             newCol = col + n
-            if newRow<len(array) and newRow>0 and newCol<len(array[0]) and newCol >0:
+            if newRow<len(array) and newRow>0 and newCol<len(array[0]) and newCol >0 and (m == 0 and n == 0): #yuck
                 if array[newRow][newCol] == 1:
                     neighbours+=1
     return neighbours

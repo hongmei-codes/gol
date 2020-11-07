@@ -55,6 +55,13 @@ class TestRepro():
                      [0, 1, 0]]
         assert repro(testArray, 1, 1) == False
 
+class TestNeighbours():
+    def test_check_neighbours_none(self):
+        '''
+        No neighbours, should return 0
+        '''
+        testArray = [[0,0,0],[0,1,0],[0,0,0]]
+        assert checkNeighbours(testArray,1,1) == 0
 
 if __name__ == '__main__':
     '''
