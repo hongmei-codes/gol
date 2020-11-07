@@ -13,18 +13,51 @@ class TestGOL():
             return False
 
     def test_repro(self):
-        testArray = [['*','*','*'],
+        '''
+        .**      .**
+        ..*  ->  .** 
+        ...      ...
+        '''
+        testArray = [['.','*','*'],
+                     ['.','.','*'],
+                     ['.','.','.']]
+        
+        # each tick all the cells will check for the neighbours, then they will do the events
+
+        expectedArray = [['.','*','*'],
+                         ['.','*','*'],
+                         ['.','.','.']]
+        game = Gol(testArray)
+        assert self.equals_helper(expectedArray,game.tick()) == True
+
+    def test_underpopulation(self):
+        testArray = [['*','.','.'],
                      ['.','.','.'],
                      ['.','.','.']]
         
-        game = Gol(testArray)
-
-        expectedArray = [['.','*','.'],
-                         ['.','*','.'],
-                         ['.','.','.']]
         
+
+        expectedArray = [['.','.','.'],
+                         ['.','.','.'],
+                         ['.','.','.']]
+        game = Gol(testArray)
         assert self.equals_helper(expectedArray,game.tick()) == True
 
+    def test_overpopulation(self):
+        """
+        * * *    * . *
+        * * * -> . . .
+        * * *    * . *
+        """
+        testArray = [['*','*','*'],
+                ['*','*','*'],
+                ['*','*','*']]
         
         
 
+        expectedArray = [['*','.','*'],
+                         ['.','.','.'],
+                         ['*','.','*']]
+        game = Gol(testArray)
+        
+        assert self.equals_helper(expectedArray,game.tick()) == True
